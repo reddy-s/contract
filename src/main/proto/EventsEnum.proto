@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package events;
+
+option java_package = "com.virtuelabs.contract.events";
+option java_multiple_files = true;
+
+enum RequestType {
+    REGISTRATION = 0;
+    CONFIG = 1;
+    EVENT = 2;
+}
+
+enum DeviceType {
+    ESP8266 = 0;
+    EDISON = 1;
+}

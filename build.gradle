@@ -1,0 +1,81 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.9'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'com.google.protobuf'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+group 'com.virtuelabs'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven {
+        url 'https://pkgs.dev.azure.com/reddyhorcrux/_packaging/contract/maven/v1'
+        credentials {
+            username "AZURE_ARTIFACTS"
+            password System.getenv("AZURE_ARTIFACTS_ENV_ACCESS_TOKEN_CONTRACT") ?: "${azureArtifactsGradleAccessTokenContract}"
+        }
+    }
+}
+
+publishing {
+    publications {
+        myLibrary(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url 'https://pkgs.dev.azure.com/reddyhorcrux/_packaging/contract/maven/v1'
+            credentials {
+                username "AZURE_ARTIFACTS"
+                password System.getenv("AZURE_ARTIFACTS_ENV_ACCESS_TOKEN_CONTRACT") ?: "${azureArtifactsGradleAccessTokenContract}"
+            }
+        }
+    }
+}
+
+dependencies {
+    compile 'io.grpc:grpc-netty:1.21.0'
+    compile 'io.grpc:grpc-protobuf:1.21.0'
+    compile 'io.grpc:grpc-stub:1.21.0'
+    compile 'com.google.protobuf:protobuf-java:3.6.1'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs './build/generated/source/proto/main/grpc'
+            srcDirs './build/generated/source/proto/main/java'
+        }
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.7.0"
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.21.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}

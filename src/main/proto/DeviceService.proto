@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package events;
+
+option java_package = "com.virtuelabs.contract.events";
+option java_multiple_files = true;
+
+import "Device.proto";
+
+service DeviceService {
+    rpc sendEvent(DeviceRequest) returns (DeviceResponse) {};
+    rpc streamEvents(stream DeviceRequest) returns (stream DeviceResponse) {};
+}

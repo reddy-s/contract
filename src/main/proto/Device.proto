@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package events;
+
+option java_package = "com.virtuelabs.contract.events";
+option java_multiple_files = true;
+
+import "google/protobuf/timestamp.proto";
+import "EventsEnum.proto";
+
+message DeviceRequest {
+    RequestType requestType = 1;
+    int32 deviceId = 2;
+    DeviceType deviceType = 3;
+    google.protobuf.Timestamp eventTime = 4;
+    int64 dataPoints = 5;
+}
+
+message DeviceResponse {
+    bool anomaly = 1;
+    string message = 2;
+}

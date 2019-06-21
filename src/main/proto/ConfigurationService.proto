@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package events;
+
+option java_package = "com.virtuelabs.contract.events";
+option java_multiple_files = true;
+
+import "Configuration.proto";
+
+service ConfigurationService {
+    rpc sendEvent(ConfigRequest) returns (ConfigResponse) {};
+}

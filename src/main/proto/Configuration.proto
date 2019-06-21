@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package events;
+
+option java_package = "com.virtuelabs.contract.events";
+option java_multiple_files = true;
+
+import "EventsEnum.proto";
+
+message ConfigRequest {
+    int32 deviceId = 1;
+    DeviceType deviceType = 2;
+}
+
+message ConfigResponse {
+    int32 beatFrequency = 1;
+}
