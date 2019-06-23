@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package events;
 
-option java_package = "com.virtuelabs.contract.events";
+option java_package = "io.virtuelabs.contract.events";
 option java_multiple_files = true;
 
 enum RequestType {
