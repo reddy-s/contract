@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package events;
+package contract;
 
-option java_package = "io.virtuelabs.contract.events";
+option java_package = "io.virtuelabs.contract";
 option java_multiple_files = true;
 
 import "Configuration.proto";
