@@ -1,6 +1,9 @@
 syntax = "proto3";
 
-package io.grpc.health.v1;
+package health;
+
+option java_package = "io.virtuelabs.contract";
+option java_multiple_files = true;
 
 message HealthCheckRequest {
     string service = 1;
