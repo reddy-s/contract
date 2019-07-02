@@ -19,4 +19,7 @@ message DeviceRequest {
 message DeviceResponse {
     bool anomaly = 1;
     string message = 2;
+    ResponseType responseType = 3;
+    int64 heartBeatFrequency = 4;
+    bool notify = 5;
 }

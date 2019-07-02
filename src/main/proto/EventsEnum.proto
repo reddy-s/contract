@@ -11,6 +11,11 @@ enum RequestType {
     EVENT = 2;
 }
 
+enum ResponseType {
+    CONFIG = 0;
+    ACTION = 1;
+}
+
 enum DeviceType {
     ESP8266 = 0;
     EDISON = 1;
