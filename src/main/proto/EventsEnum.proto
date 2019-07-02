@@ -12,7 +12,7 @@ enum RequestType {
 }
 
 enum ResponseType {
-    CONFIG = 0;
+    PROFILE = 0;
     ACTION = 1;
 }
 
